@@ -13,7 +13,9 @@ def runAllTests(startingdir):
 	the_errors = 0
 	misfires = {}
 	for item in os.listdir("."):
-		if item not in IGNORE_FILES and item.endswith(".py") and "def _tests():" in open(item).read():
+		if item.endswith(".py") and "crypto" in item: print item
+		# if item not in IGNORE_FILES and item.endswith(".py") and "def _tests():" in open(item).read():
+		if "crypto" in item and item.endswith(".py"):
 			print "********** TESTING", item, "************"
 			p = subprocess.Popen(["python", item], stderr=subprocess.PIPE)
 			p.wait()

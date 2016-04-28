@@ -65,12 +65,12 @@ def _tests(makeKey=False, runGridlabD=True, showGDLABResults=False, cleanUp=True
 	# Read circuit files and convert to json, encrypting each step.
 	exceptionCount = 0
 	testAttachments = {'schedules.glm':'', 'climate.tmy2':open('../../data/Climate/KY-LEXINGTON.tmy2','r').read()}
-	# testFiles = [('INEC-RENOIR.std','INEC.seq'), ('INEC-GRAHAM.std','INEC.seq'), ('Olin-Barre.std','Olin.seq'), ('Olin-Brown.std','Olin.seq'),('ABEC-FRANK.std','ABEC.seq'), ('ABEC-COLUMBIA.std','ABEC.seq')]
-	testFiles = [('OMF_Norfork1.std','OMF_Norfork1.seq')]
+	testFiles = [('INEC-RENOIR.std','INEC.seq'), ('INEC-GRAHAM.std','INEC.seq'), ('Olin-Barre.std','Olin.seq'), ('Olin-Brown.std','Olin.seq'),('ABEC-FRANK.std','ABEC.seq'), ('ABEC-COLUMBIA.std','ABEC.seq')]
+	# testFiles = [('OMF_Norfork1.std','OMF_Norfork1.seq')]
 	try:
 		for stdString, seqString in testFiles:
 			print "Working on:", stdString+",",seqString
-			with open(pJoin(stdString),'r') as stdFile, open(pJoin(seqString),'r') as seqFile:
+			with open(pJoin("../../","uploads",stdString),'r') as stdFile, open(pJoin("../../","uploads",seqString),'r') as seqFile:
 				stdContents, seqContents = stdFile.read(), seqFile.read()
 			# print "First few lines before encryption:\n", stdContents[:100]
 			encData = encryptData(stdContents, key)
@@ -140,10 +140,10 @@ def _tests(makeKey=False, runGridlabD=True, showGDLABResults=False, cleanUp=True
 				except: pass
 		print "\nDone with encrypting all test files."
 	except:
-		print "Failed to encrypt", strdString, seqString
+		print "Failed to encrypt", stdString, seqString
 		exceptionCount += 1
 		traceback.print_exc()
 	return exceptionCount
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	_tests()
