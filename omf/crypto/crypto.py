@@ -60,7 +60,7 @@ def _tests(makeKey=False, runGridlabD=True, showGDLABResults=False, cleanUp=True
 	if makeKey:
 		genKey(workDir, user)
 		print "Made a new key for user:", user
-	key = getKey(pJoin("../../",os.getcwd()), user)
+	key = getKey(workDir, user)
 	print "Read key for user:", user
 	# Read circuit files and convert to json, encrypting each step.
 	exceptionCount = 0
